@@ -1,5 +1,20 @@
+// Задание 1: "Управление персоналом компании"
+// Реализуйте класс Employee (сотрудник), который имеет следующие свойства и методы:
+// Свойство name (имя) - строка, имя сотрудника.
+// Метод displayInfo() - выводит информацию о сотруднике (имя) в консоль.
+// Реализуйте класс Manager (менеджер), который наследует класс Employee и имеет дополнительное свойство и метод:
+// Свойство department (отдел) - строка, отдел, в котором работает менеджер.
+// Метод displayInfo() - переопределяет метод displayInfo() родительского класса и выводит информацию о менеджере (имя и отдел).
+
+// // Пример использования классов
+// const employee = new Employee("John Smith");
+// employee.displayInfo(); // "Name: John Smith"
+
+// const manager = new Manager("Jane Doe", "Sales");
+// manager.displayInfo(); // "Name: John Doe, Department: Sales"
+
 class Employee {
-	constructor (name) {
+	constructor(name) {
 		this.name = name;
 	}
 	displayInfo() {
@@ -7,7 +22,7 @@ class Employee {
 	}
 }
 
-class Manager extends Employee{
+class Manager extends Employee {
 	constructor(name, department) {
 		super(name);
 		this.department = department;
@@ -19,9 +34,31 @@ class Manager extends Employee{
 const employee = new Employee("John Smith");
 employee.displayInfo();
 
-const manager = new Manager("Jane Doe","Sales");
+const manager = new Manager("Jane Doe", "Sales");
 manager.displayInfo();
 
+
+// Задание 2: "Управление списком заказов"
+// Реализуйте класс Product (товар), который имеет следующие свойства и методы:
+// Свойство name - название товара.
+// Свойство price - цена товара.
+// Свойство quantity - количество товара.
+// Реализуйте класс Order (заказ), который имеет следующие свойства и методы:
+// Свойство id (номер заказа) - число, уникальный номер заказа.
+// Свойство products (продукты) - массив, содержащий список продуктов в заказе.
+// Метод addProduct(product) - принимает объект класса Product и добавляет его в список продуктов заказа.
+// Метод getTotalPrice() - возвращает общую стоимость заказа, основанную на ценах продуктов.
+
+// // Пример использования:
+// const order = new Order(12345);
+
+// const product1 = new Product("Phone", 500, 2);
+// order.addProduct(product1);
+
+// const product2 = new Product("Headphones", 100, 1);
+// order.addProduct(product2);
+
+// console.log(order.getTotalPrice()); // Вывод: 1100
 
 
 class Product {
@@ -30,45 +67,34 @@ class Product {
 		this.price = price;
 		this.quantity = quantity;
 	}
-	toString() {
-		return this.name, this.price, this.quantity;
-	}
 }
 
 class Order {
-	
-	constructor (id) {
+	constructor(id) {
 		this.id = id;
-		this.products = new Array();
+		this.products = [];
 	}
-	
+
 	addProduct(product) {
 		return this.products.push(product);
 	}
+
 	getTotalPrice() {
-		const sum = 0;
-		for (let i = 0; i >= this.products.lenght; i++) {
-			const item = this.products[i];
-			sum += item.price * item.quantity;
-		}
+		let sum = 0;
+		const items = this.products;
+		items.forEach(el => {
+			sum += el.price * el.quantity;
+		});
 		return sum;
 	}
-	getInfo() {
-		console.log(`Номер заказа - ${this.id}, добавленый товар ${this.products}`)
-	}
 }
-
 
 const order = new Order(12345);
 
 const product1 = new Product("Phone", 500, 2);
-const product2 = new Product("Phonfe", 5300, 32);
-
 order.addProduct(product1);
+
+const product2 = new Product("Headphones", 100, 1);
 order.addProduct(product2);
-console.log(order.getInfo());
 
-// const product2 = new Product("Headphones",100,1);
-// order.addProduct(product2);
-
-console.log(order.getTotalPrice());
+console.log(order.getTotalPrice()); // Вывод: 1100
